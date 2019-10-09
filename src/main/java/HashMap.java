@@ -16,7 +16,7 @@ class HashMap<K, D> {
         int index = hashing(key);
         if (isNull(index)) {
             array[index] = new LinkedList();
-            array[index].insertFirst(key, data);
+            array[index].insertLast(key, data);
         } else {
             if (isKeyUnique(key))
                 array[index].insertFirst(key, data);
@@ -24,22 +24,7 @@ class HashMap<K, D> {
                 array[index].replace(key, data);
             }
         }
-        // Node node = new Node();
-        //node.data = 1;
     }
-    // a=0;
-    // array [100] = null; NODE
-    // array[0] == null;
-    // array[0]=new Node;
-    //array[0]=data,key,next;
-    //a = 1
-    //a = 1
-    //a = 1
-    //array[0] -> node[1]->next=null;
-
-  // a = b;
-    //a =d;
-
 
     private boolean isKeyUnique(K key) {
         int index = hashing(key);

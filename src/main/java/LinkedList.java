@@ -1,11 +1,7 @@
-public class LinkedList {
+public class LinkedList<K, D> {
     private Node head;
 
-    public boolean isEmpty() {
-        return (head == null);
-    }
-
-    <T, D> void insertFirst(T key, D data) {
+    void insertFirst(K key, D data) {
         Node newNode = new Node();
         newNode.insert(key, data, head);
         head = newNode;
@@ -35,17 +31,17 @@ public class LinkedList {
         System.out.println();
     }
 
-    <K, T> T get(K key) {
+    D get(K key) {
         Node current = head;
         while (current != null) {
             if (current.isEqual(key))
-                return (T) current.data;
+                return (D) current.data;
             current = current.next;
         }
-        return (T) current.data;
+        return (D) current.data;
     }
 
-    <K> boolean check(K key) {
+    boolean check(K key) {
         Node current = head;
         while (current != null) {
             if (current.isEqual(key))
@@ -55,7 +51,7 @@ public class LinkedList {
         return false;
     }
 
-    <K, D> void replace(K key, D data) {
+    void replace(K key, D data) {
         Node current = head;
         while (current != null) {
             if (current.isEqual(key))
@@ -74,7 +70,7 @@ public class LinkedList {
         return count;
     }
 
-    <D> boolean dataIsThere(D data) {
+    boolean dataIsThere(D data) {
         Node current = head;
         while (current != null) {
             if (current.DataIsEqual(data))
@@ -84,15 +80,21 @@ public class LinkedList {
         return false;
     }
 
-    <K, D> void insertLast(K key, D data) {
+    void insertLast(K key, D data) {
         Node current = head;
-        System.out.println(current.data);
-        while (current.next != null) {
-            current = current.next;
-        }
         Node newNode = new Node();
-        newNode.data = data;
-        newNode.key = key;
-        current.next = newNode;
+        if (current == null) {
+            newNode.key = key;
+            newNode.data = data;
+            current = newNode;
+        } else {
+            while (current != null) {
+                current = current.next;
+            }
+            newNode.data = data;
+            newNode.key = key;
+            current.next = newNode;
+        }
+        System.out.println(current.data);
     }
 }
