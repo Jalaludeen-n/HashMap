@@ -18,7 +18,7 @@ class HashMap<K, D> {
             array[index] = new LinkedList();
             array[index].insertLast(key, data);
         } else {
-            if (isKeyUnique(key))
+            if (isKeyUnique(index, key))
                 array[index].insertFirst(key, data);
             else {
                 array[index].replace(key, data);
@@ -26,13 +26,12 @@ class HashMap<K, D> {
         }
     }
 
-    private boolean isKeyUnique(K key) {
-        int index = hashing(key);
+    private boolean isKeyUnique(int index, K key) {
         return !array[index].check(key);
     }
 
-    D get(K key) {
-        return array[hashing(key)].get(key);
+    K get(K key) {
+        return (K) array[hashing(key)].get(key);
     }
 
     int size() {
